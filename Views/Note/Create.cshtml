@@ -1,0 +1,33 @@
+﻿@{
+	ViewData["title"] = "Add a new note";
+}
+@using MyNotes.ViewModels;
+@model NoteVM;
+
+<div class="row d-flex justify-content-center">
+	<div class="col-md-4 p-3 card">
+		<h4 class="text-center text-info">
+			Add Note
+		</h4>
+		<form method="post" action="Create">
+			<div asp-validation-summary="ModelOnly">
+
+			</div>
+
+			<div class="form-group mb-2">
+				<label asp-for="NoteTitle"></label>
+				<input asp-for="NoteTitle" class="form-control"/>
+				<span asp-validation-for="NoteTitle"></span>
+			</div>
+
+			<div class="form-group mb-2">
+				<label asp-for="NoteDescription"></label>
+				<input asp-for="NoteDescription" class="form-control" />
+				<span asp-validation-for="NoteDescription"></span>
+			</div>
+			<input type="submit" class="btn btn-primary" value="Create" />
+
+		</form>
+	</div>
+	
+</div>

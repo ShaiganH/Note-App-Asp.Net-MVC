@@ -1,0 +1,17 @@
+﻿@{
+	ViewData["title"] = "Email Confirmed";
+}
+
+<div class="container d-flex justify-content-center align-items-center">
+
+	<h4>
+		Email Confirmed!
+	</h4>
+	<p class="mt-2">You will be redirected to the homepage in 3 seconds.</p>
+</div>
+
+<script>
+	setTimeout(() => {
+		window.location.href = '@Url.Action("Index","Home")';
+	}, 3000);
+</script>

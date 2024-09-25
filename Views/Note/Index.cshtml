@@ -1,0 +1,44 @@
+﻿@{
+	ViewData["title"] = "My Notes";
+}
+@using MyNotes.Models;
+@model List<Note>;
+
+
+	<div class="row m-4">
+		<div class="col-8">
+			<h4>
+				My Notes
+			</h4>
+		</div>
+		<div class="col-4">
+			<a asp-controller="Note" asp-action="Create">Add new note</a>
+		</div>
+
+	
+</div>
+	@if (Model.Count > 0)
+	{
+		<div class="row">
+		@foreach (var note in Model)
+		{
+			<div class="col-3">
+			<div class="card m-4" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">@note.NoteTitle</h5>
+					<a asp-controller="Note" asp-action="Detail" asp-route-id="@note.NoteId">Details</a>
+
+				</div>
+			</div>
+			</div>
+		}
+		</div>
+		
+
+	}
+	else
+	{
+		<h4>You have no notes yet. </h4>
+	}
+
+

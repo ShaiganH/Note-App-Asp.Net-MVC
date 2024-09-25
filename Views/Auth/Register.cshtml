@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["title"] = "Register";
+}
+@using MyNotes.ViewModels;
+@model RegisterVM
+
+<div class="d-flex justify-content-center row">
+    <div class="card col-md-4 p-3">
+        <h4 class="text-info text-center">
+            Register
+        </h4>
+        <form method="post" action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Enter name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Username">Email address</label>
+                <input asp-for="Username" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" class="form-control" placeholder="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="ConfirmPassword">@Html.DisplayNameFor(a => a.ConfirmPassword)</label>
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="Password">
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+            <button type="submit" class="btn btn-primary mb-2 ">Register</button>
+            </div>
+        </form>
+        <div class="text-success">
+            @Html.Raw(ViewData["SuccessMessage"])
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

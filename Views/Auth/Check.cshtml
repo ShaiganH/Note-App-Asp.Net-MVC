@@ -1,0 +1,25 @@
+﻿<h3>
+    Check Your Inbox for registration link
+</h3>
+<a asp-action="ResendEmail" asp-controller="Auth" class="mt-3" id="resendEmailLink">Send email again</a>
+
+<div id="emailStatus" class="text-success"></div>
+
+<script>
+    document.getElementById("resendEmailLink").addEventListener("click", async (event) => {
+        event.preventDefault(); 
+
+        // Optionally, you can use fetch to call the ResendEmail action
+        const response = await fetch(event.target.href);
+        
+        // Create and show the message
+        const emailStatusDiv = document.getElementById("emailStatus");
+        emailStatusDiv.innerHTML = "Email has been sent!";
+        emailStatusDiv.style.display = "block";
+
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+            emailStatusDiv.style.display = "none";
+        }, 3000);
+    });
+</script>

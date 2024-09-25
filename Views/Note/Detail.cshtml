@@ -1,0 +1,24 @@
+﻿@{
+	ViewData["title"] = "Detail";
+}
+@using MyNotes.ViewModels;
+@model NoteVM;
+
+<div class="container-fluid p-4">
+
+    <div class="card mx-auto col-12 col-md-10 col-lg-8">
+        <div class="card-body">
+            <div class="d-flex justify-content-between flex-wrap">
+                <div>
+                    <h5 class="card-title">@Model.NoteTitle</h5>
+                </div>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
+                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                </div>
+            </div>
+            <p class="card-text mt-3">@Model.NoteDescription</p>
+        </div>
+    </div>
+
+</div>
