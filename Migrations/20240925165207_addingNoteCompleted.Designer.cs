@@ -12,8 +12,8 @@ using MyNotes.Data;
 namespace MyNotes.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240923164659_trying")]
-    partial class trying
+    [Migration("20240925165207_addingNoteCompleted")]
+    partial class addingNoteCompleted
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,6 +239,9 @@ namespace MyNotes.Migrations
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsCompleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("NoteDescription")
                         .HasColumnType("nvarchar(max)");

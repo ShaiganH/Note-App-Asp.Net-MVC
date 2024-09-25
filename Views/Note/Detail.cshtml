@@ -2,7 +2,7 @@
 	ViewData["title"] = "Detail";
 }
 @using MyNotes.ViewModels;
-@model NoteVM;
+@model Note;
 
 <div class="container-fluid p-4">
 
@@ -15,6 +15,7 @@
                 <div class="d-flex">
                     <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                    <a asp-controller="note" asp-action="complete" asp-route-id="@Model.NoteId">@(Model.IsCompleted == true?"Completed":"Not completed")</a>
                 </div>
             </div>
             <p class="card-text mt-3">@Model.NoteDescription</p>

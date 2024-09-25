@@ -15,6 +15,8 @@ namespace MyNotes.Models
         
         public string? NoteDescription { get; set; }
 
+        public bool? IsCompleted { get; set; } = false;
+
 
         [Required]
         public string ApplicationUserId { get; set; }

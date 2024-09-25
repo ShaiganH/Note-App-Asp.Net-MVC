@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MyNotes.Migrations
 {
     /// <inheritdoc />
-    public partial class trying : Migration
+    public partial class addingNoteCompleted : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -165,6 +165,7 @@ namespace MyNotes.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NoteTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     NoteDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsCompleted = table.Column<bool>(type: "bit", nullable: true),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>

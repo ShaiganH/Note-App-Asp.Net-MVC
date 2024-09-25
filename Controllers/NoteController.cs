@@ -71,14 +71,28 @@ namespace MyNotes.Controllers
             {
                 return NotFound();
             }
-            var NoteVm = new NoteVM()
+            
+            return View(Note);
+        }
+
+        public IActionResult Complete(int? id)
+        {
+            var note = _context.Notes.FirstOrDefault(x => x.NoteId == id);
+            if(note is null)
             {
-                NoteTitle = Note.NoteTitle!,
-                NoteDescription = Note.NoteDescription!
-            };
-            return View(NoteVm);
+                return NotFound("No note found");
+            }
+            note.IsCompleted = !note.IsCompleted;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Detail","Note",new { id });
+
+
+
         }
 
 
-	}
+
+    }
 }

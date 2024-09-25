@@ -237,6 +237,9 @@ namespace MyNotes.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool?>("IsCompleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("NoteDescription")
                         .HasColumnType("nvarchar(max)");
 
