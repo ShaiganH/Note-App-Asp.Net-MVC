@@ -13,9 +13,19 @@
                     <h5 class="card-title">@Model.NoteTitle</h5>
                 </div>
                 <div class="d-flex">
-                    <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    <a asp-controller="note" asp-action="complete" asp-route-id="@Model.NoteId">@(Model.IsCompleted == true?"Completed":"Not completed")</a>
+                    <a asp-action="edit" asp-controller="note" asp-route-id="@Model.NoteId" class="btn btn-sm btn-primary me-2">Edit</a>
+                    <a asp-action="delete" asp-controller="note" asp-route-id="@Model.NoteId" class="btn btn-sm btn-primary me-2">Delete</a>
+                    <a asp-controller="note" asp-action="complete" asp-route-id="@Model.NoteId" class="btn btn-sm">
+                        @if (Model.IsCompleted == true)
+                        {
+                            <i class="fas fa-check fas-xl" style="color: #0ecd3e;"></i>
+
+                        }
+                        else
+                        {
+                            <i class="fas fa-check fas-xl" style="color: #afb0b1;"></i>
+                        }
+                    </a>
                 </div>
             </div>
             <p class="card-text mt-3">@Model.NoteDescription</p>
@@ -23,3 +33,4 @@
     </div>
 
 </div>
+

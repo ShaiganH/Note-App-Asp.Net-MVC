@@ -54,10 +54,9 @@ namespace MyNotes.Controllers
                     var Link = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, token = Token }, Request.Scheme);
 
                     System.Diagnostics.Debug.WriteLine(Link);
-                    emailSender.SendEmailAsync(user.Email!, "Confirm Email", Link!);
+                    await emailSender.SendEmailAsync(user.Email!, "Confirm Email", Link!);
 
 
-                    var resendLink = Url.Action("ResendEmail", "Auth");
 
 
                     ModelState.AddModelError("", "Email isn't verified check your inbox");
@@ -106,7 +105,7 @@ namespace MyNotes.Controllers
                     var Link = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, token = Token }, Request.Scheme);
 
                     System.Diagnostics.Debug.WriteLine(Link);
-                    emailSender.SendEmailAsync(user.Email!, "Confirm Email", Link!);
+                    await emailSender.SendEmailAsync(user.Email!, "Confirm Email", Link!);
 
 
                     var resendLink = Url.Action("ResendEmail", "Auth");
@@ -177,7 +176,7 @@ namespace MyNotes.Controllers
 
 
 
-        [HttpPost]
+        
         public async Task<IActionResult> ResendEmail()
         {
             var email = HttpContext.Session.GetString("Email");
@@ -199,9 +198,10 @@ namespace MyNotes.Controllers
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var Link = Url.Action("ConfirmEmail", "Auth", new { UserId = user.Id, Token = token }, Request.Scheme);
 
-            emailSender.SendEmailAsync(user.Email!, "Resend Confirmation", Link!);
-            ModelState.AddModelError("", "Email has been sent");
-            return View("Check");
+            await emailSender.SendEmailAsync(user.Email!, "Resend Confirmation", Link!);
+			ViewData["SuccessMessage"] = $"Email sent again";
+
+			return RedirectToAction("Register","Auth");
         }
 
 

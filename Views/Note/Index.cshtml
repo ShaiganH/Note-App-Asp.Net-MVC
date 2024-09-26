@@ -12,7 +12,7 @@
 			</h4>
 		</div>
 		<div class="col-4">
-			<a asp-controller="Note" asp-action="Create">Add new note</a>
+		<a asp-controller="Note" asp-action="Create"><i class="fas fa-plus fa-xl"></i></a>
 		</div>
 
 	
@@ -27,7 +27,6 @@
 				<div class="card-body">
 					<h5 class="card-title">@note.NoteTitle</h5>
 					<a asp-controller="Note" asp-action="Detail" asp-route-id="@note.NoteId">Details</a>
-
 				</div>
 			</div>
 			</div>

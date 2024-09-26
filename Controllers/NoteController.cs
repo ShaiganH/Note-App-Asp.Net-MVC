@@ -92,7 +92,67 @@ namespace MyNotes.Controllers
 
         }
 
+        public IActionResult Edit(int id)
+        {
+            var note = _context.Notes.First(x => x.NoteId == id);
+
+            if (note is null)
+            {
+                return NotFound();
+            }
+
+            var noteVm = new NoteVM()
+            {
+                NoteId = note.NoteId,
+                NoteTitle = note.NoteTitle!,
+                NoteDescription = note.NoteDescription!
+            };
+
+			
+			return View(noteVm);
+		}
+
+        [HttpPost]
+		public IActionResult Edit(NoteVM vm)
+		{
+            if (ModelState.IsValid)
+            {
+                var note = _context.Notes.FirstOrDefault(x => x.NoteId == vm.NoteId);
+
+                if(note == null)
+                {
+                    return NotFound();
+                }
+
+				note.NoteTitle = vm.NoteTitle;
+				note.NoteDescription = vm.NoteDescription;
+
+				_context.SaveChanges();
+
+				return RedirectToAction("Detail", new { id = note.NoteId });
+			}
+            return View(vm);
+		}
+
+        
+     
 
 
-    }
+        public IActionResult Delete(int id)
+        {
+            var note = _context.Notes.FirstOrDefault(x => x.NoteId == id);
+
+            if(note == null)
+            {
+                return NotFound();
+            }
+
+            _context.Notes.Remove(note);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Note");
+
+        }
+
+	}
 }
