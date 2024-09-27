@@ -34,6 +34,14 @@ namespace MyNotes.Controllers
             return View(notes);
         }
 
+        public IActionResult Error()
+        {
+            
+
+            return View("Error");
+        }
+
+
         public IActionResult Create()
         {
             return View();
@@ -69,18 +77,24 @@ namespace MyNotes.Controllers
             var Note = _context.Notes.FirstOrDefault(x => x.NoteId == id);
             if (Note == null)
             {
-                return NotFound();
+                return RedirectToAction("Error", "note");
             }
             
             return View(Note);
         }
 
-        public IActionResult Complete(int? id)
+        public async Task<IActionResult> Complete(int? id)
         {
-            var note = _context.Notes.FirstOrDefault(x => x.NoteId == id);
+            var user =await _userManager.GetUserAsync(User);
+
+            if(user == null)
+            {
+                return Unauthorized();
+            }
+            var note =_context.Notes.FirstOrDefault(x => x.NoteId == id && x.ApplicationUserId == user!.Id);
             if(note is null)
             {
-                return NotFound("No note found");
+                return RedirectToAction("Error", "note");
             }
             note.IsCompleted = !note.IsCompleted;
 
@@ -92,13 +106,20 @@ namespace MyNotes.Controllers
 
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var note = _context.Notes.First(x => x.NoteId == id);
+            var user = await _userManager.GetUserAsync(User);
+
+            if(user == null)
+            {
+                return Unauthorized();
+            }
+
+            var note = _context.Notes.FirstOrDefault(x => x.NoteId == id && x.ApplicationUserId == user.Id);
 
             if (note is null)
             {
-                return NotFound();
+                return RedirectToAction("Error", "note");
             }
 
             var noteVm = new NoteVM()
@@ -113,15 +134,20 @@ namespace MyNotes.Controllers
 		}
 
         [HttpPost]
-		public IActionResult Edit(NoteVM vm)
+		public async Task<IActionResult> Edit(NoteVM vm)
 		{
             if (ModelState.IsValid)
             {
-                var note = _context.Notes.FirstOrDefault(x => x.NoteId == vm.NoteId);
+				var user = await _userManager.GetUserAsync(User);
+				if (user == null)
+				{
+					return Unauthorized();
+				}
+				var note = _context.Notes.FirstOrDefault(x => x.NoteId == vm.NoteId && x.ApplicationUserId == user.Id);
 
                 if(note == null)
                 {
-                    return NotFound();
+                    return RedirectToAction("Error","note");
                 }
 
 				note.NoteTitle = vm.NoteTitle;
@@ -138,13 +164,18 @@ namespace MyNotes.Controllers
      
 
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var note = _context.Notes.FirstOrDefault(x => x.NoteId == id);
+			var user = await _userManager.GetUserAsync(User);
+			if (user == null)
+			{
+				return Unauthorized();
+			}
+			var note = _context.Notes.FirstOrDefault(x => x.NoteId == id && x.ApplicationUserId == user.Id);
 
-            if(note == null)
+			if (note == null)
             {
-                return NotFound();
+                return RedirectToAction("Error", "note");
             }
 
             _context.Notes.Remove(note);

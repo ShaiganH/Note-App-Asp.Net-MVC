@@ -5,13 +5,15 @@
 @model List<Note>;
 
 
-	<div class="row m-4">
-		<div class="col-8">
+
+
+	<div class="col-md-10 d-flex d-flex justify-content-between">
+		<div >
 			<h4>
 				My Notes
 			</h4>
 		</div>
-		<div class="col-4">
+		<div>
 		<a asp-controller="Note" asp-action="Create"><i class="fas fa-plus fa-xl"></i></a>
 		</div>
 
@@ -22,7 +24,7 @@
 		<div class="row">
 		@foreach (var note in Model)
 		{
-			<div class="col-3">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
 			<div class="card m-4" style="width: 18rem;">
 				<div class="card-body">
 					<h5 class="card-title">@note.NoteTitle</h5>
