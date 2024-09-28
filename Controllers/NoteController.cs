@@ -34,7 +34,21 @@ namespace MyNotes.Controllers
             return View(notes);
         }
 
-        public IActionResult Error()
+		public async Task<IActionResult> Completed()
+		{
+			var user = await _userManager.GetUserAsync(User);
+			if (user == null)
+			{
+				return Unauthorized();
+			}
+			List<Note> notes = _context.Notes
+				.Where(x => x.ApplicationUserId == user.Id && x.IsCompleted == true)
+				.ToList();
+
+			return View(notes);
+		}
+
+		public IActionResult Error()
         {
             
 

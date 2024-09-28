@@ -13,17 +13,17 @@
                     <h5 class="card-title">@Model.NoteTitle</h5>
                 </div>
                 <div class="d-flex">
-                    <a asp-action="edit" asp-controller="note" asp-route-id="@Model.NoteId"><i class="fas fa-edit m-1" style="color: #5479bb;"></i></a>
-                    <a asp-action="delete" asp-controller="note" asp-route-id="@Model.NoteId" ><i class="fas fa-trash m-1" style="color: #c80404;"></i></a>
-                    <a asp-controller="note" asp-action="complete" asp-route-id="@Model.NoteId">
+                    <a asp-action="edit" asp-controller="note" data-toggle="tooltip" data-placement="top" title="Edit Note" asp-route-id="@Model.NoteId"><i class="fas fa-edit m-2" style="color: #5479bb;"></i></a>
+                    <a asp-action="delete" asp-controller="note" data-toggle="tooltip" data-placement="top" title="Delete Note" asp-route-id="@Model.NoteId"><i class="fas fa-trash m-2" style="color: #c80404;"></i></a>
+                    <a asp-controller="note" asp-action="complete"  asp-route-id="@Model.NoteId">
                         @if (Model.IsCompleted == true)
                         {
-                            <i class="fas fa-check fas-xl m-1" style="color: #0ecd3e;"></i>
+                            <i class="fas fa-check fas-xl m-2" data-toggle="tooltip" data-placement="top" title="Mark note as incomplete" style="color: #0ecd3e;"></i>
 
                         }
                         else
                         {
-                            <i class="fas fa-check fas-xl m-1" style="color: #afb0b1;"></i>
+                            <i class="fas fa-check fas-xl m-2" data-toggle="tooltip" data-placement="top" title="Mark note as complete" style="color: #afb0b1;"></i>
                         }
                     </a>
                 </div>
