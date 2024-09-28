@@ -1,14 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> signInManager;
 @inject UserManager<ApplicationUser> userManager;
-<ul class="navbar-nav">
+<ul class="navbar-nav ">
     @if (signInManager.IsSignedIn(User))
     {
         var user = userManager.GetUserAsync(User).Result;
         if (user != null)
         {
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @user.Name
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">

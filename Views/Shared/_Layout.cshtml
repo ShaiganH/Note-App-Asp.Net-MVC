@@ -8,25 +8,76 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MyNotes.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/fontawesome-free-5.15.4-web/css/all.min.css" />
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .hero {
+            background: linear-gradient(to right, #007bff, #00d4ff);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+            .hero h1 {
+                font-size: 3rem;
+                font-weight: bold;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                margin-top: 20px;
+            }
+
+        .btn-cta {
+            background-color: #ffffff;
+            color: black;
+            border-radius: 30px;
+            padding: 10px 30px;
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+
+        .btn-cta:hover {
+            background-color: black;
+            color: white;
+            transition:0.2s
+        }
+
+        .features {
+            margin-top: 50px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #007bff;
+        }
+
+        .feature-box {
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">My Notes</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                    <ul class="navbar-nav flex-grow-1">                      
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Note" asp-action="Index">Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Creator">About Developer</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

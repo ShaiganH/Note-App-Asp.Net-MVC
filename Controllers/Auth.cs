@@ -38,7 +38,7 @@ namespace MyNotes.Controllers
 
                 if (Result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Note");
                 }
                 else if (Result.IsNotAllowed)
                 {
@@ -228,7 +228,7 @@ namespace MyNotes.Controllers
 
                 var Link = Url.Action("ChangePassword", "Auth", new { userId = user.Id, Token = token }, Request.Scheme);
 
-                emailSender.SendEmailAsync(user.Email!, "Change Password Request", Link!);
+                await emailSender.SendEmailAsync(user.Email!, "Change Password Request", Link!);
 
                 ViewData["Success"] = "Email has been sent to your address. Check you inbox";
 

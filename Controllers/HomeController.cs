@@ -5,7 +5,6 @@ using System.Diagnostics;
 
 namespace MyNotes.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,10 +19,17 @@ namespace MyNotes.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Creator()
         {
             return View();
         }
+
+        public new IActionResult NotFound()
+        {
+            return View("404"); 
+        }
+
+  
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

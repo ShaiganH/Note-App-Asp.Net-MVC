@@ -1,8 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to My Notes</h1>
+        <p>Your personal space to create, organize, and manage your notes effortlessly.</p>
+        <a href="@Url.Action("Index", "Note")" class="btn btn-cta">Get Started</a>
+    </div>
+</section>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="container features text-center">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="feature-box">
+                <i class="fas fa-sticky-note feature-icon"></i>
+                <h3 class="mt-3">Create Notes</h3>
+                <p>Quickly create and organize your notes in a simple and efficient way.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box">
+                <i class="fas fa-edit feature-icon"></i>
+                <h3 class="mt-3">Edit Notes</h3>
+                <p>Easily edit and update your notes to keep them relevant and up-to-date.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box">
+                <i class="fas fa-trash-alt feature-icon"></i>
+                <h3 class="mt-3">Delete Notes</h3>
+                <p>Manage your notes by deleting outdated or unwanted content effortlessly.</p>
+            </div>
+        </div>
+    </div>
+</section>

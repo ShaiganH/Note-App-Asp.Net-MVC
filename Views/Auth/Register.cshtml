@@ -32,8 +32,13 @@
                 <input asp-for="ConfirmPassword" class="form-control" placeholder="Password">
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="d-flex justify-content-center mt-2">
-            <button type="submit" class="btn btn-primary mb-2 ">Register</button>
+            <div class="row">
+                <div class="col-8">
+                    <a asp-controller="auth" asp-action="login" class="text-decoration-none float-lg-start mt-2">Have an account?'</a>
+                </div>
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary mb-2 ">Register</button>
+                </div>
             </div>
         </form>
         <div class="text-success">
